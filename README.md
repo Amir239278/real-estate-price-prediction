@@ -131,14 +131,45 @@ Pour utiliser Mage AI, configurez :
 MAGE_API_URL=http://localhost:6789/api/v1
 ```
 
-## 🐳 Docker (optionnel)
+## 🐳 Docker
 
-Un `Dockerfile` est fourni pour déployer l'application en conteneur :
+### Option 1 : Docker Compose (recommandé)
+
+Le moyen le plus simple de lancer l'application avec Docker :
 
 ```bash
+docker-compose up -d
+```
+
+L'application sera accessible sur `http://localhost:8501`
+
+Pour arrêter :
+```bash
+docker-compose down
+```
+
+### Option 2 : Docker classique
+
+```bash
+# Construire l'image
 docker build -t wild-data-hub .
+
+# Lancer le conteneur
 docker run -p 8501:8501 wild-data-hub
 ```
+
+### Note importante sur les modèles
+
+⚠️ **Pour la production**, vous devez copier vos vrais modèles ML dans le conteneur :
+
+```bash
+# Option 1 : Via volume Docker
+docker run -p 8501:8501 -v ./dataset:/app/dataset wild-data-hub
+
+# Option 2 : Via docker-compose (décommentez la ligne volume dans docker-compose.yml)
+```
+
+Par défaut, le Dockerfile crée des modèles factices pour permettre le démarrage de l'application.
 
 ## 📝 Notes
 

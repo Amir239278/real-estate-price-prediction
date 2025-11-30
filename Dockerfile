@@ -34,11 +34,19 @@ RUN pip install --no-cache-dir --timeout=120 --upgrade pip \
 # Copier le code source
 COPY . .
 
-# Régénérer les modèles
-RUN python scripts/regenerate_models.py
+# Créer les dossiers nécessaires pour les modèles
+RUN mkdir -p /app/dataset
+
+# Régénérer les modèles (si les vrais modèles ne sont pas disponibles)
+# Note: Pour la production, copiez vos vrais modèles dans dataset/ avant le build
+RUN python scripts/regenerate_models.py || echo "⚠️ Modèles factices créés - Remplacez par les vrais modèles pour la production"
 
 # Ports exposés
-EXPOSE 8501 6789
+EXPOSE 8501
 
-# Commande par défaut - Lance à la fois Streamlit et Mage
-CMD bash -c "mage start project & streamlit run app.py --server.port=8501 --server.address=0.0.0.0"
+# Commande par défaut - Lance Streamlit uniquement
+# Pour utiliser Mage AI, décommentez la ligne suivante et commentez celle-ci
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+# Alternative avec Mage AI (décommentez si nécessaire):
+# CMD bash -c "mage start project & streamlit run app.py --server.port=8501 --server.address=0.0.0.0"
