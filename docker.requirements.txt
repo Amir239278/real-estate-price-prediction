@@ -1,0 +1,37 @@
+# Mage AI
+mage-ai==0.9.75
+
+# Core (versions corrigées)
+numpy==1.26.4
+streamlit==1.42.0
+pandas==1.5.3
+requests>=2.28.0
+
+# Geo
+geopandas==0.14.3
+shapely==2.0.3
+pyproj==3.7.1
+
+# Viz
+folium==0.15.1
+streamlit-folium==0.19.0
+
+# ML
+scikit-learn==1.3.2  # Corrigé: 1.7.1 trop récent, incompatible
+joblib==1.3.2
+xgboost==1.7.5
+category_encoders==2.5.0
+
+# Database
+SQLAlchemy<2.0
+sqlalchemy-utils>=0.38
+
+# Web
+jinja2>=3.0
+fastapi>=0.85,<0.110
+uvicorn>=0.18,<0.25
+
+# Utils
+python-dateutil>=2.8.2
+pytz==2023.3  
+geopy==2.4.0

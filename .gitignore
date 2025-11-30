@@ -196,5 +196,37 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
-#notre dataset
+# Projet spécifique
+# Dataset (trop volumineux pour GitHub)
 dataset/
+*.csv.gz
+*.pkl
+*.pickle
+
+# Environnements virtuels
+mage_env/
+venv/
+mage_venv/
+.env
+.venv
+
+# Logs
+*.log
+logs/
+collect_dvf.log
+estimation.log
+
+# Fichiers temporaires et système
+-p
+-v
+~
+p3-data-hub
+*.tmp
+*.temp
+
+# Fichiers de configuration locaux
+crontab.txt
+lancer_dvf.bat
+
+# Fichiers HTML générés (optionnel - vous pouvez les garder si vous voulez)
+# carte_attract_*.html

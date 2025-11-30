@@ -1,17 +1,71 @@
-# estimation.py
+import numpy as np
 
+# estimation.py
 import joblib
 import pandas as pd
 import time
+import sys
+import pickle
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 
 # 🌍 Géocodeur
 geolocator = Nominatim(user_agent="estimation-immo-app")
 
-# 📦 Chargement automatique
-modele_dict = joblib.load("dataset/modele_dict.pkl")
-stats_locales = pd.read_pickle("dataset/stats_locales.pkl")
+# 🔧 Fonction de chargement compatible avec les anciennes versions de pandas
+def load_pickle_compatible(filepath):
+    """Charge un fichier pickle en gérant les incompatibilités de version pandas"""
+    try:
+        return joblib.load(filepath)
+    except (ModuleNotFoundError, AttributeError, ImportError) as e:
+        error_str = str(e)
+        if "pandas.core.indexes.numeric" in error_str or "pandas.core" in error_str:
+            # Solution: créer des modules de compatibilité pour les anciennes références pandas
+            import types
+            
+            # Créer un module factice pour pandas.core.indexes.numeric
+            numeric_module = types.ModuleType('pandas.core.indexes.numeric')
+            # Ajouter les classes nécessaires depuis pandas
+            numeric_module.Int64Index = pd.Index
+            numeric_module.Float64Index = pd.Index
+            numeric_module.UInt64Index = pd.Index
+            
+            # Injecter le module dans sys.modules
+            if 'pandas.core.indexes' not in sys.modules:
+                sys.modules['pandas.core.indexes'] = types.ModuleType('pandas.core.indexes')
+            if 'pandas.core.indexes.numeric' not in sys.modules:
+                sys.modules['pandas.core.indexes.numeric'] = numeric_module
+            
+            # Essayer de charger à nouveau
+            try:
+                return joblib.load(filepath)
+            except Exception:
+                # Si ça ne fonctionne toujours pas, utiliser pickle directement
+                with open(filepath, 'rb') as f:
+                    return pickle.load(f)
+        else:
+            raise
+
+# 📦 Chargement automatique avec gestion de compatibilité
+try:
+    modele_dict = load_pickle_compatible("dataset/modele_dict.pkl")
+    stats_locales = pd.read_pickle("dataset/stats_locales.pkl")
+except Exception as e:
+    print(f"⚠️ Erreur lors du chargement des modèles: {e}")
+    print("💡 Tentative de chargement avec méthode alternative...")
+    # Méthode alternative: charger avec pickle directement
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        try:
+            with open("dataset/modele_dict.pkl", 'rb') as f:
+                modele_dict = pickle.load(f)
+            stats_locales = pd.read_pickle("dataset/stats_locales.pkl")
+        except Exception as e2:
+            print(f"❌ Impossible de charger les modèles: {e2}")
+            print("💡 Veuillez régénérer les modèles avec la commande: python scripts/regenerate_models.py")
+            modele_dict = {}
+            stats_locales = pd.DataFrame(columns=['code_postal', 'prix_m2_median_code_postal'])
 
 def geocoder_adresse(adresse, tentative=1, max_tentative=3):
     try:

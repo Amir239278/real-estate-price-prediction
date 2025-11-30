@@ -1,0 +1,21 @@
+# Gérer les fins de ligne automatiquement
+* text=auto
+
+# Fichiers texte avec fins de ligne LF
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.sh text eol=lf
+
+# Fichiers binaires
+*.pkl binary
+*.pickle binary
+*.csv.gz binary
+*.zip binary
+*.xlsx binary
+*.geojson binary
+

@@ -1,0 +1,91 @@
+# Documentation et développement
+*.md
+README*
+LICENSE
+docs/
+.git/
+.gitignore
+
+# Notebooks et outputs
+*.ipynb
+*.log
+.ipynb_checkpoints/
+
+# Python cache et bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Environnements virtuels
+.venv/
+env/
+venv/
+.env
+.env.local
+.env.*.local
+
+# IDE et éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Datasets et données volumineux
+dataset/
+data/
+!dataset/modele_dict.pkl
+!dataset/
+*.csv
+*.parquet
+*.xlsx
+*.json
+*.xml
+*.sqlite
+*.db
+
+# Build et distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Cache docker et conteneurs
+*.tar
+*.tar.gz
+Dockerfile.dev
+docker-compose.override.yml
+
+# Logs et temporaires
+logs/
+tmp/
+temp/
+*.tmp
+
+# Modèles ML volumineux
+models/
+*.pkl
+!dataset/modele_dict.pkl
+*.joblib
+*.h5
+*.pb
+
+# Configuration locale
+config.local.*
+secrets.json
+
+# Exceptions pour les fichiers nécessaires
+!dataset/modele_dict.pkl
+!dataset/
