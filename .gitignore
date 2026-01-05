@@ -1,9 +1,13 @@
-# Byte-compiled / optimized / DLL files
+# ============================================================================
+# Python Data Science Project - .gitignore
+# ============================================================================
+
+# ============================================================================
+# Python - Byte-compiled / optimized / DLL files
+# ============================================================================
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
 
 # Distribution / packaging
@@ -27,15 +31,14 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
-requirements.txt
+
+# Note: requirements.txt should NOT be ignored - it's essential for the project
 
 # Unit test / coverage reports
 htmlcov/
@@ -52,23 +55,251 @@ coverage.xml
 .pytest_cache/
 cover/
 
-# Translations
-*.mo
-*.pot
+# ============================================================================
+# Virtual Environments
+# ============================================================================
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+myenv/
+mage_env/
+mage_venv/
+.conda/
 
-# Django stuff:
+# ============================================================================
+# Jupyter Notebooks
+# ============================================================================
+.ipynb_checkpoints/
+*.ipynb.bak
+*.ipynb_checkpoints
+.jupyter/
+
+# ============================================================================
+# Data Files & Databases
+# ============================================================================
+# Données sensibles et volumineuses
+data/raw/
+data/processed/
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.db
+*.sqlite
+*.sqlite3
+
+# Exceptions pour fichiers de configuration de données
+!data/.gitkeep
+!data/README.md
+!data/sample_*.csv
+!data/example_*.csv
+
+# ============================================================================
+# Machine Learning Models & Artifacts
+# ============================================================================
+# Modèles volumineux (> 100MB)
+models/*.pkl
+models/*.pickle
+models/*.joblib
+models/*.h5
+models/*.hdf5
+models/*.pb
+models/*.onnx
+models/*.pt
+models/*.pth
+models/checkpoints/
+models/weights/
+
+# Exceptions pour petits modèles de test
+!models/.gitkeep
+!models/README.md
+!models/sample_*.pkl
+
+# ============================================================================
+# Credentials & Secrets
+# ============================================================================
+.env
+.env.local
+.env.*.local
+config.local.*
+secrets.*
+credentials.*
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+api_keys.txt
+secrets.yaml
+secrets.yml
+config.ini
+config.local.ini
+
+# ============================================================================
+# IDE & Editors
+# ============================================================================
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# PyCharm / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================================
+# Logs & Temporary Files
+# ============================================================================
 *.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+*.log.*
+logs/
+log/
+temp/
+tmp/
+*.tmp
+*.temp
+*.cache
+*.swp
+*.swo
 
-# Flask stuff:
-instance/
-.webassets-cache
+# ============================================================================
+# Backup Files
+# ============================================================================
+*.backup
+*.bak
+*.old
+*~
+*.orig
+*.save
 
-# Scrapy stuff:
-.scrapy
+# ============================================================================
+# Project Specific
+# ============================================================================
+# Dataset (trop volumineux pour GitHub)
+dataset/
+*.csv.gz
+*.pkl
+*.pickle
 
+# Fichiers temporaires et système
+-p
+-v
+p3-data-hub
+*.tmp
+*.temp
+
+# Fichiers de configuration locaux
+crontab.txt
+lancer_dvf.bat
+
+# Fichiers HTML générés (optionnel - vous pouvez les garder si vous voulez)
+# carte_attract_*.html
+
+# ============================================================================
+# Docker
+# ============================================================================
+.dockerignore
+docker-compose.override.yml
+*.dockerfile.local
+
+# ============================================================================
+# Cloud & Deployment
+# ============================================================================
+.aws/
+.gcp/
+.azure/
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# ============================================================================
+# Documentation Build
+# ============================================================================
+docs/_build/
+docs/.doctrees/
+site/
+.mkdocs/
+
+# ============================================================================
+# Package Managers
+# ============================================================================
+# pip
+pip-selfcheck.json
+
+# Poetry
+poetry.lock
+.poetry/
+
+# Pipenv
+Pipfile.lock
+
+# Conda
+.conda/
+
+# ============================================================================
+# Cursor / AI Tools
+# ============================================================================
+.cursorignore
+.cursorindexingignore
+
+# ============================================================================
+# Miscellaneous
+# ============================================================================
 # Sphinx documentation
 docs/_build/
 
@@ -76,68 +307,12 @@ docs/_build/
 .pybuilder/
 target/
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# UV
-#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#uv.lock
-
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
-
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#pdm.lock
-#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
-#   in version control.
-#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
-.pdm.toml
-.pdm-python
-.pdm-build/
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Celery stuff
+# Celery
 celerybeat-schedule
 celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-mon_env/
-myenv/
 
 # Spyder project settings
 .spyderproject
@@ -163,70 +338,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
-
-# Abstra
-# Abstra is an AI-powered process automation framework.
-# Ignore directories containing user credentials, local state, and settings.
-# Learn more at https://abstra.io/docs
-.abstra/
-
-# Visual Studio Code
-#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
-#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
-#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
-#  you could uncomment the following to ignore the enitre vscode folder
-# .vscode/
-
-# Ruff stuff:
-.ruff_cache/
-
-# PyPI configuration file
-.pypirc
-
-# Cursor
-#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
-#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
-#  refer to https://docs.cursor.com/context/ignore-files
-.cursorignore
-.cursorindexingignore
-
-# Projet spécifique
-# Dataset (trop volumineux pour GitHub)
-dataset/
-*.csv.gz
-*.pkl
-*.pickle
-
-# Environnements virtuels
-mage_env/
-venv/
-mage_venv/
-.env
-.venv
-
-# Logs
-*.log
-logs/
-collect_dvf.log
-estimation.log
-
-# Fichiers temporaires et système
--p
--v
-~
-p3-data-hub
-*.tmp
-*.temp
-
-# Fichiers de configuration locaux
-crontab.txt
-lancer_dvf.bat
-
-# Fichiers HTML générés (optionnel - vous pouvez les garder si vous voulez)
-# carte_attract_*.html
+# ============================================================================
+# End of .gitignore
+# ============================================================================
