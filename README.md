@@ -238,6 +238,25 @@ print(f"Prix estimé : €{price:,.0f}")
 
 ---
 
+## 🎯 Application Streamlit Déployée
+
+### Où Acheter et à Quel Prix ? - Cartes d'Attractivité
+
+L'application propose une interface interactive complète pour explorer et analyser le marché immobilier français :
+
+- 📄 **Analyse des Départements** : Visualiser les prix moyens et tendances par zone
+- - 🗣 **Cartes d'Attractivité Interactives** : Heatmaps choropleth avec code couleur (rouge=cher, jaune=moyen, vert=abordable)
+  - - 🍓 **Segmentation par Type de Bien** : Vues distinctes pour appartements, maisons, terrains
+    - - 📊 **Tableau de Bord Analytique** : KPIs, comparaisons, estimations par zone
+     
+      - #### 🚀 Accéder à l'Application
+     
+      - > **🔗 [Lancer l'Application Streamlit en Direct](https://real-estate-estimation.streamlit.app/)**
+        >
+        > > ⚠️ **Note** : URL à personnaliser avec votre déploiement Streamlit Cloud ou en local : `streamlit run app.py`
+        > >
+        > > ---
+
 ## 📄 Licence
 
 MIT License - Voir [LICENSE](LICENSE) pour détails.
